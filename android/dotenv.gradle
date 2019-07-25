@@ -1,0 +1,100 @@
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
+def getCurrentFlavor() {
+    Gradle gradle = getGradle()
+
+    // match optional modules followed by the task
+    // (?:.*:)* is a non-capturing group to skip any :foo:bar: if they exist
+    // *[a-z]+([A-Za-z]+) will capture the flavor part of the task name onward (e.g., assembleRelease --> Release)
+    def pattern = Pattern.compile("(?:.*:)*[a-z]+([A-Z][A-Za-z]+)")
+    def flavor = ""
+
+    gradle.getStartParameter().getTaskNames().any { name ->
+        Matcher matcher = pattern.matcher(name)
+        if (matcher.find()) {
+            flavor = matcher.group(1).toLowerCase()
+            return true
+        }
+    }
+
+    return flavor
+}
+
+def loadDotEnv(flavor = getCurrentFlavor()) {
+    def envFile = ".env"
+
+    if (System.env['ENVFILE']) {
+        envFile = System.env['ENVFILE']
+    } else if (System.getProperty('ENVFILE')) {
+        envFile = System.getProperty('ENVFILE')
+    } else if (project.hasProperty("envConfigFiles")) {
+        // use startsWith because sometimes the task is "generateDebugSources", so we want to match "debug"
+        project.ext.envConfigFiles.any { pair ->
+            if (flavor.startsWith(pair.key)) {
+                envFile = pair.value
+                return true
+            }
+        }
+    } else if (project.hasProperty("defaultEnvFile")) {
+        envFile = project.defaultEnvFile
+    }
+
+    def env = [:]
+    println("Reading env from: $envFile")
+
+    File f = new File("$project.rootDir/../$envFile");
+    if (!f.exists()) {
+        f = new File("$envFile");
+    }
+
+    if (f.exists()) {
+        f.eachLine { line ->
+            def matcher = (line =~ /^\s*(?:export\s+|)([\w\d\.\-_]+)\s*=\s*['"]?(.*?)?['"]?\s*$/)
+            if (matcher.getCount() == 1 && matcher[0].size() == 3) {
+                env.put(matcher[0][1], matcher[0][2].replace('"', '\\"'))
+            }
+        }
+    } else {
+        println("**************************")
+        println("*** Missing .env file ****")
+        println("**************************")
+    }
+
+    project.ext.set("env", env)
+}
+
+loadDotEnv()
+
+android {
+    defaultConfig {
+        project.env.each { k, v ->
+            def escaped = v.replaceAll("%","\\\\u0025")
+            buildConfigField "String", k, "\"$v\""
+            resValue "string", k, "\"$escaped\""
+        }
+    }
+}
+
+tasks.whenTaskAdded { task ->
+    if (project.hasProperty("envConfigFiles")) {
+        project.envConfigFiles.each { envConfigName, envConfigFile ->
+            if (task.name.toLowerCase() == "generate"+envConfigName+"buildconfig") {
+                task.doFirst() {
+                    android.applicationVariants.all { variant ->
+                        def variantConfigString = variant.getVariantData().getVariantConfiguration().getFullName()
+                        if (envConfigName.contains(variantConfigString.toLowerCase())) {
+                            loadDotEnv(envConfigName)
+                            project.env.each { k, v ->
+                                def escaped = v.replaceAll("%","\\\\u0025")
+                                variant.buildConfigField "String", k, "\"$v\""
+                                variant.resValue "string", k, "\"$escaped\""
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
