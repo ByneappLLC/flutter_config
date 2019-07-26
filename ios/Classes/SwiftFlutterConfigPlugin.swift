@@ -1,5 +1,6 @@
 import Flutter
 import UIKit
+import GeneratedDotEnv.m
 
 public class SwiftFlutterConfigPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
@@ -7,8 +8,9 @@ public class SwiftFlutterConfigPlugin: NSObject, FlutterPlugin {
     let instance = SwiftFlutterConfigPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
-
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+    
     result("iOS " + UIDevice.current.systemVersion)
   }
+    
 }
