@@ -27,8 +27,5 @@ HOST_PATH="$SRCROOT/../.."
     execution_position: :before_compile,
     input_files: ['$(SRCROOT)/Classes/BuildDotenvConfig.rb']
   }
-
-  s.source_files = 'ios/**/*.{h,m}'
-  s.requires_arc = true
 end
 

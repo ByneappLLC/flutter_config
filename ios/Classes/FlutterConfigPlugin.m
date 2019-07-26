@@ -1,8 +1,20 @@
 #import "FlutterConfigPlugin.h"
-#import <flutter_config/flutter_config-Swift.h>
 
 @implementation FlutterConfigPlugin
 + (void)registerWithRegistrar:(NSObject<FlutterPluginRegistrar>*)registrar {
-  [SwiftFlutterConfigPlugin registerWithRegistrar:registrar];
+  FlutterMethodChannel* channel = [FlutterMethodChannel
+      methodChannelWithName:@"flutter_config"
+            binaryMessenger:[registrar messenger]];
+  FlutterConfigPlugin* instance = [[FlutterConfigPlugin alloc] init];
+  [registrar addMethodCallDelegate:instance channel:channel];
 }
+
+- (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
+  if ([@"loadEnvVariables" isEqualToString:call.method]) {
+    result([@"iOS " stringByAppendingString:[[UIDevice currentDevice] systemVersion]]);
+  } else {
+    result(FlutterMethodNotImplemented);
+  }
+}
+
 @end
