@@ -5,11 +5,9 @@ import 'dart:async';
 
 import 'package:flutter_config/flutter_config.dart';
 
-Map<String, dynamic> envVariables;
-
 void main() async {
 
-  envVariables = await FlutterConfig.loadEnvVariables;
+  await FlutterConfig.loadEnvVariables();
 
   runApp(MyApp());
 }
@@ -19,13 +17,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    var envs = Platform.environment;
-
-    print(envs);
-
     var allValues = <Widget>[];
 
-    envVariables.forEach((k, v) {
+    FlutterConfig.variables.forEach((k, v) {
       allValues.add(Text('$k: $v'));
     });
 
@@ -40,7 +34,7 @@ class MyApp extends StatelessWidget {
               ...allValues,
 
               SizedBox(height: 20,),
-              Text('Values of fabric Id: ${envVariables['FABRIC_ID']}')
+              Text('Values of fabric Id: ${FlutterConfig.get('FABRIC_ID')}')
             ]
           )
         ),
