@@ -7,7 +7,7 @@ void main() {
 
   setUp(() {
     channel.setMockMethodCallHandler((MethodCall methodCall) async {
-      return '42';
+      return { 'FABRIC': 67 };
     });
   });
 
@@ -15,7 +15,8 @@ void main() {
     channel.setMockMethodCallHandler(null);
   });
 
-  // test('getPlatformVersion', () async {
-  //   expect(await FlutterConfig.platformVersion, '42');
-  // });
+  test('gat variable', () async {
+    await FlutterConfig.loadEnvVariables();
+    expect(FlutterConfig.get('FABRIC'), 67);
+  });
 }

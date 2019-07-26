@@ -11,7 +11,7 @@ class FlutterConfig {
     _variables = variables;
   }
 
-  static String get(String key) {
+  static dynamic get(String key) {
     if (_variables != null) {
       return _variables[key];
     } else {
