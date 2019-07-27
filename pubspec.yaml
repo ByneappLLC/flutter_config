@@ -1,8 +1,8 @@
 name: flutter_config
 description: Config Variables for your Flutter Apps.
 version: 0.0.1
-author:
-homepage:
+author: Edgar Tremillo <edgar@byneapp.com>
+homepage: https://github.com/ByneappLLC/flutter_config
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
