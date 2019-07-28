@@ -5,8 +5,6 @@ Map<String, dynamic> _variables;
 
 /// Flutter config writes environment variables to `BuildConfig` class for android
 /// and as a `NSDictionary` for iOS
-/// 
-/// 
 class FlutterConfig {
   static const MethodChannel _channel =
       const MethodChannel('flutter_config'); 
