@@ -59,8 +59,6 @@ class FlutterConfigPlugin(private val activity: Activity): MethodCallHandler {
       clazz.declaredFields.forEach {
         variables += it.name to extractValue(it)
       }
-
-      Log.d("FlutterConfig", "Keys: ${variables.keys.size}")
     } catch (e: ClassNotFoundException) {
       Log.d("FlutterConfig", "Could not access BuildConfig")
     }
