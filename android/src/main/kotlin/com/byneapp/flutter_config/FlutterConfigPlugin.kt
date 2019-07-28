@@ -36,7 +36,6 @@ class FlutterConfigPlugin(private val activity: Activity): MethodCallHandler {
     try {
       val context = activity.applicationContext
       val resId = context.resources.getIdentifier("build_config_package", "string", context.packageName)
-      Log.d("FlutterConfig", "resId: $resId")
       var className: String
       try {
           className = context.getString(resId)
