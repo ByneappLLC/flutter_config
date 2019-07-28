@@ -7,7 +7,7 @@ void main() {
 
   setUp(() {
     channel.setMockMethodCallHandler((MethodCall methodCall) async {
-      return { 'FABRIC': 67 };
+      return {'FABRIC': 67};
     });
   });
 
