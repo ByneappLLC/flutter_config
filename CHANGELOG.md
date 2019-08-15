@@ -1,3 +1,7 @@
+## 1.0.2
+
+- Improve Documentation and example
+
 ## 1.0.1
 
 - Add support for numbers in Android Build Flavors
