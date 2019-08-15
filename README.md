@@ -40,6 +40,6 @@ Keep in mind this module doesn't obfuscate or encrypt secrets for packaging, so 
 
 Install the latest version of the plugin
 
-Refer to [Android Setup Guide](./docs/ANDROID.md) for initial setup and advanced options
+Refer to [Android Setup Guide](./doc/ANDROID.md) for initial setup and advanced options
 
-No additional setup is required for iOS, however, for advanced usage refer to the [iOS Setup Guide](./docs/IOS.md)
+No additional setup is required for iOS, however, for advanced usage refer to the [iOS Setup Guide](./doc/IOS.md)
