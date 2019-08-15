@@ -31,3 +31,5 @@ DerivedData
 *.ipa
 *.xcuserstate
 project.xcworkspace
+
+ios/Classes/GeneratedDotEnv.m
