@@ -1,3 +1,7 @@
+## 1.0.3
+
+- Use the latest Gradle and Kotlin verision
+
 ## 1.0.2
 
 - Improve Documentation and example
