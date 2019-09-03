@@ -56,8 +56,16 @@ Then edit the newly created scheme to make it use a different env file. From the
 - Expand the "Build" settings on left
 - Click "Pre-actions", and under the plus sign select "New Run Script Action"
 - Where it says "Type a script or drag a script file", type:
-  ```
-  echo ".env.staging" > /tmp/envfile   # replace .env.staging for your file
-  ```
+
+```
+echo ".env.staging" > /tmp/envfile   # replace .env.staging for your file
+```
+
+It may be a better Idea not modifying system-wide files like /tmp/envfile
+but instead set the file in the current directory:
+
+```
+cp ${PROJECT_DIR}/../.env.staging .env  # replace .env.staging for your file
+```
 
 This is still a bit experimental and dirty – let us know if you have a better idea on how to make iOS use different configurations opening a pull request or issue!

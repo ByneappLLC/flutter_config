@@ -85,7 +85,7 @@ versionCode project.env.get("VERSION_CODE").toInteger()
 
 Once again, remember variables stored in `.env` are published with your code, so **DO NOT put anything sensitive there like your app `signingConfigs`.**
 
-- This plugin is written in Kotlin. Therefore, you need to make sure you have Kotlin support in your project your project. See [installing the Kotlin plugin](https://kotlinlang.org/docs/tutorials/kotlin-android.html#installing-the-kotlin-plugin).
+This plugin is written in Kotlin. Therefore, you need to make sure you have Kotlin support in your project your project. See [installing the Kotlin plugin](https://kotlinlang.org/docs/tutorials/kotlin-android.html#installing-the-kotlin-plugin).
 
 Edit your project-level build.gradle file to look like this:
 
