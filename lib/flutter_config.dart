@@ -1,30 +1,39 @@
 import 'package:flutter/services.dart';
 
-/// An instance of all environment variables
-Map<String, dynamic> _variables;
-
 /// Flutter config writes environment variables to `BuildConfig` class for android
 /// and as a `NSDictionary` for iOS
 class FlutterConfig {
+  /// An instance of all environment variables
+  Map<String, dynamic> _variables;
+
+  // Private Constructor
+  FlutterConfig._internal();
+
+  // Instance of FlutterConfig
+  static final FlutterConfig _instance = FlutterConfig._internal();
+
   static const MethodChannel _channel = const MethodChannel('flutter_config');
 
   /// Variables need to be loaded on app startup, recommend to do it `main.dart`
   static loadEnvVariables() async {
     final Map<String, dynamic> variables =
         await _channel.invokeMapMethod('loadEnvVariables');
-    _variables = variables;
+
+    _instance._variables = variables;
   }
 
   /// Returns a specific varible value give a [key]
   static dynamic get(String key) {
-    if (_variables != null) {
-      return _variables[key];
+    if (_instance._variables != null) {
+      return _instance._variables[key];
     } else {
-      print('You have not loaded the variables');
+      print(
+          'FlutterConfig Variables are Empty\n Ensure you have a .env file and you\n have loaded the variables');
       return null;
     }
   }
 
   /// returns all the current loaded variables;
-  static Map<String, dynamic> get variables => _variables;
+  static Map<String, dynamic> get variables =>
+      _instance._variables != null ? _instance._variables : {};
 }
