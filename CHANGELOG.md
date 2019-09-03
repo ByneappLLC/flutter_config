@@ -1,3 +1,8 @@
+## 1.0.4
+
+- Use a singleton pattern for FlutterConfig class
+- Add some notes to iOS readme.
+
 ## 1.0.3
 
 - Use the latest Gradle and Kotlin verision
