@@ -15,7 +15,7 @@ void main() {
     channel.setMockMethodCallHandler(null);
   });
 
-  test('gat variable', () async {
+  test('get variable', () async {
     await FlutterConfig.loadEnvVariables();
     expect(FlutterConfig.get('FABRIC'), 67);
   });
