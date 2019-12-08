@@ -26,12 +26,12 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 project.ext.envConfigFiles = [
-        developDebug: ".dev.env",
-        developRelease: ".dev.env",
-        stagingDebug: ".staging.env",
-        stagingRelease: ".staging.env",
-        productionDebug: ".env",
-        productionRelease: ".env",
+        developdebug: ".dev.env",
+        developrelease: ".dev.env",
+        stagingdebug: ".staging.env",
+        stagingrelease: ".staging.env",
+        productiondebug: ".env",
+        productionrelease: ".env",
 ]
 apply from: project(':flutter_config').projectDir.getPath() + "/dotenv.gradle"
 android {
