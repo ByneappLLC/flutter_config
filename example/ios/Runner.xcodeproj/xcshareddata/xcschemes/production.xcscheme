@@ -10,6 +10,13 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
+               scriptText = "echo &quot;.env&quot; &gt; ${SRCROOT}/.envfile&#10;">
+            </ActionContent>
+         </ExecutionAction>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
                scriptText = "${SRCROOT}/.symlinks/plugins/flutter_config/ios/Classes/BuildXCConfig.rb ${SRCROOT}/.. ${SRCROOT}/Flutter/tmp.xcconfig&#10;">
             </ActionContent>
          </ExecutionAction>
