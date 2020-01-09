@@ -26,7 +26,12 @@ apply plugin: 'kotlin-android'
 apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 project.ext.envConfigFiles = [
-        debug: ".env"
+        developdebug: ".env.dev",
+        developrelease: ".env.dev",
+        stagingdebug: ".env.staging",
+        stagingrelease: ".env.staging",
+        productiondebug: ".env",
+        productionrelease: ".env",
 ]
 apply from: project(':flutter_config').projectDir.getPath() + "/dotenv.gradle"
 android {
@@ -55,6 +60,20 @@ android {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig signingConfigs.debug
+        }
+    }
+
+    flavorDimensions "flavors"
+
+    productFlavors {
+        develop {
+            dimension "flavors"
+        }
+        staging {
+            dimension "flavors"
+        }
+        production {
+            dimension "flavors"
         }
     }
 }
