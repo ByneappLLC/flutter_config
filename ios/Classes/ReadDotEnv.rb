@@ -9,10 +9,19 @@ Encoding.default_internal = Encoding::UTF_8
 # TODO: introduce a parameter which controls how to build relative path
 def read_dot_env(envs_root)
   defaultEnvFile = '.env'
+  
   puts "going to read env file from root folder #{envs_root}"
 
+  if File.exists?(File.join(Dir.pwd, "../.envfile"))
+    envFilePath = File.join(Dir.pwd, "../.envfile")
+  elsif File.exists?(File.join(Dir.pwd, "/.envfile"))
+    envFilePath = File.join(Dir.pwd, "/.envfile")
+  end
   # pick a custom env file if set
-  if File.exist?('/tmp/envfile')
+  if File.exists?(envFilePath)
+    custom_env = true
+    file = File.read(envFilePath).strip
+  elsif File.exists?("/tmp/envfile")
     custom_env = true
     file = File.read('/tmp/envfile').strip
   else
