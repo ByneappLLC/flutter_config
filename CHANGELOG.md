@@ -1,3 +1,7 @@
+## 1.0.5
+
+- Update documentation for iOS
+
 ## 1.0.4
 
 - Use a singleton pattern for FlutterConfig class
