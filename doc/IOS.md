@@ -73,6 +73,6 @@ As a pre-build action. The end result should look something like this:
 ![img](./pic4.png)
 
 It may be a better Idea not modifying system-wide files like /tmp/envfile
-but instead set the file in the current directory, I have been trying to implement this but may need some help, See #2
+but instead set the file in the current directory, I have been trying to implement this but may need some help, [See #2](https://github.com/ByneappLLC/flutter_config/issues/2)
 
 This is still a bit experimental and dirty – let us know if you have a better idea on how to make iOS use different configurations opening a pull request or issue!
