@@ -21,7 +21,7 @@ Config Variables for your Flutter Apps.
     name: 'Config codegen',
     script: %(
 set -ex
-HOST_PATH="$SRCROOT/../.."
+HOST_PATH="$SRCROOT/../"
 "${PODS_TARGET_SRCROOT}/Classes/BuildDotenvConfig.rb" "$HOST_PATH" "${PODS_TARGET_SRCROOT}/Classes"
 ),
     execution_position: :before_compile,
