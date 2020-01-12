@@ -61,11 +61,18 @@ Then edit the newly created scheme to make it use a different env file. From the
 echo ".env.staging" > /tmp/envfile   # replace .env.staging for your file
 ```
 
-It may be a better Idea not modifying system-wide files like /tmp/envfile
-but instead set the file in the current directory:
+By default, flutter_config will always pickup the `.env` file as the default file unless a
+`/tmp/enfile` is detected. This means that all your iOS schemes with custom `.env` files should include:
 
 ```
-cp ${PROJECT_DIR}/../.env.staging .env  # replace .env.staging for your file
+echo ".env.yuorCustomEnv" > /tmp/envfile
 ```
+
+As a pre-build action. The end result should look something like this:
+
+![img](./pic4.png)
+
+It may be a better Idea not modifying system-wide files like /tmp/envfile
+but instead set the file in the current directory, I have been trying to implement this but may need some help, [See #2](https://github.com/ByneappLLC/flutter_config/issues/2)
 
 This is still a bit experimental and dirty – let us know if you have a better idea on how to make iOS use different configurations opening a pull request or issue!
