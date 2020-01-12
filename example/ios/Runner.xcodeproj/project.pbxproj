@@ -494,7 +494,7 @@
 					"$(PROJECT_DIR)/Flutter",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.byneapp.flutterConfigExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.byneapp.flutterConfigExample.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -577,7 +577,7 @@
 					"$(PROJECT_DIR)/Flutter",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.byneapp.flutterConfigExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.byneapp.flutterConfigExample.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -654,7 +654,7 @@
 					"$(PROJECT_DIR)/Flutter",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.byneapp.flutterConfigExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.byneapp.flutterConfigExample.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -731,7 +731,7 @@
 					"$(PROJECT_DIR)/Flutter",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.byneapp.flutterConfigExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.byneapp.flutterConfigExample.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -808,7 +808,7 @@
 					"$(PROJECT_DIR)/Flutter",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.byneapp.flutterConfigExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.byneapp.flutterConfigExample.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -885,7 +885,7 @@
 					"$(PROJECT_DIR)/Flutter",
 				);
 				MARKETING_VERSION = 1.0.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.byneapp.flutterConfigExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.byneapp.flutterConfigExample.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1068,7 +1068,7 @@
 				6DA6C68F23C714AB00DD7076 /* Profile-staging */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Debug-production";
+			defaultConfigurationName = "Debug-develop";
 		};
 		97C147051CF9000F007C117D /* Build configuration list for PBXNativeTarget "Runner" */ = {
 			isa = XCConfigurationList;
@@ -1084,7 +1084,7 @@
 				6DA6C69023C714AB00DD7076 /* Profile-staging */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = "Debug-production";
+			defaultConfigurationName = "Debug-develop";
 		};
 /* End XCConfigurationList section */
 	};
