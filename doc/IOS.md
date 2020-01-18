@@ -34,7 +34,7 @@ Extra steps are required if you are reading env varibles from your `info.plist` 
    ![img](./pic3.png)
 
    ```
-   ${SRCROOT}/.symlinks/plugins/flutter_config/ios/Classes/BuildXCConfig.rb ${SRCROOT}/.. ${SRCROOT}/Flutter/tmp.xcconfig
+   ${SRCROOT}/.symlinks/plugins/flutter_config/ios/Classes/BuildXCConfig.rb ${SRCROOT}/ ${SRCROOT}/Flutter/tmp.xcconfig
    ```
 
 4. You need to do this for both your `Debug` and `Release` Schemes.
