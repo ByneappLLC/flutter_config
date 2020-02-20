@@ -34,10 +34,13 @@ Extra steps are required if you are reading env varibles from your `info.plist` 
    ![img](./pic3.png)
 
    ```
-   ${SRCROOT}/.symlinks/plugins/flutter_config/ios/Classes/BuildXCConfig.rb ${SRCROOT}/.. ${SRCROOT}/Flutter/tmp.xcconfig
+   "${SRCROOT}/.symlinks/plugins/flutter_config/ios/Classes/BuildXCConfig.rb" "${SRCROOT}/.." "${SRCROOT}/Flutter/tmp.xcconfig"
    ```
 
-4. You need to do this for both your `Debug` and `Release` Schemes.
+4. Choose the target you're building for (in this case "Runner") under "Provide build settings from"
+   ![img](./pic4.png)
+
+5. You need to do this for both your `Debug` and `Release` Schemes.
 
 This should now create a `tmp.xcconfig` file which can be accessed by `info.plist`
 
@@ -70,7 +73,7 @@ echo ".env.yuorCustomEnv" > /tmp/envfile
 
 As a pre-build action. The end result should look something like this:
 
-![img](./pic4.png)
+![img](./pic5.png)
 
 It may be a better Idea not modifying system-wide files like /tmp/envfile
 but instead set the file in the current directory, I have been trying to implement this but may need some help, [See #2](https://github.com/ByneappLLC/flutter_config/issues/2)
