@@ -5,6 +5,7 @@ homepage: https://github.com/ByneappLLC/flutter_config
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
+  flutter: ">=1.10.0 <2.0.0"
 
 dependencies:
   flutter:
@@ -16,5 +17,9 @@ dev_dependencies:
 
 flutter:
   plugin:
-    androidPackage: com.byneapp.flutter_config
-    pluginClass: FlutterConfigPlugin
+    platforms:
+      android:
+        package: com.byneapp.flutter_config
+        pluginClass: FlutterConfigPlugin
+      ios:
+        pluginClass: FlutterConfigPlugin
