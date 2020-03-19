@@ -9,12 +9,19 @@ Encoding.default_internal = Encoding::UTF_8
 # TODO: introduce a parameter which controls how to build relative path
 def read_dot_env(envs_root)
   defaultEnvFile = '.env'
+  
   puts "going to read env file from root folder #{envs_root}"
 
+  if File.exists?("#{envs_root}../.envfile")
+    envFilePath = "#{envs_root}../.envfile"
+  elsif File.exists?("#{envs_root}/.envfile")
+    envFilePath = "#{envs_root}.envfile"
+  end
   # pick a custom env file if set
-  if File.exist?('/tmp/envfile')
+  if File.exists?(envFilePath)
+    puts "file exists at #{envFilePath}"
     custom_env = true
-    file = File.read('/tmp/envfile').strip
+    file = File.read(envFilePath).strip
   else
     custom_env = false
     file = ENV['ENVFILE'] || defaultEnvFile
@@ -24,13 +31,16 @@ def read_dot_env(envs_root)
     # https://regex101.com/r/cbm5Tp/1
     dotenv_pattern = /^(?:export\s+|)(?<key>[[:alnum:]_]+)=((?<quote>["'])?(?<val>.*?[^\\])\k<quote>?|)$/
 
-    path = File.expand_path(File.join(envs_root, file.to_s))
+    path = File.expand_path(File.join("#{envs_root}..", file.to_s))
+
+    puts "path #{path}"
     if File.exist?(path)
       raw = File.read(path)
     elsif File.exist?(file)
       raw = File.read(file)
     else
       defaultEnvPath = File.expand_path(File.join(envs_root, "../#{defaultEnvFile}"))
+      puts "default path #{defaultEnvPath}"
       unless File.exist?(defaultEnvPath)
         # try as absolute path
         defaultEnvPath = defaultEnvFile

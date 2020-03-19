@@ -27,17 +27,32 @@ Extra steps are required if you are reading env varibles from your `info.plist` 
    #include? "tmp.xcconfig"
    ```
 
+   It is also recommended to add this file to gitignore
+   ```
+   **/ios/Flutter/tmp.xcconfig
+   ```
+
+
 2. In the Xcode menu, go to Product > Scheme > Edit Scheme
    ![img](./pic2.png)
 
-3. under Build > Pre-actions you need to add a new run script action with the following code:
+3. under Build > Pre-actions you need to add 2 new run script actions with the following code:
    ![img](./pic3.png)
 
    ```
-   ${SRCROOT}/.symlinks/plugins/flutter_config/ios/Classes/BuildXCConfig.rb ${SRCROOT}/.. ${SRCROOT}/Flutter/tmp.xcconfig
+   echo ".env" > ${SRCROOT}/.envfile
    ```
 
-4. You need to do this for both your `Debug` and `Release` Schemes.
+   ```
+   ${SRCROOT}/.symlinks/plugins/flutter_config/ios/Classes/BuildXCConfig.rb ${SRCROOT}/ ${SRCROOT}/Flutter/tmp.xcconfig
+   ```
+
+4. Make sure you select `Runner` from the `Provide build settings from` dropdown
+
+   Your finished scripts should l ook like this:
+   ![img](./pic5.png)
+
+5. By default, you should only need to do this for the runner scheme if you only have one environment.
 
 This should now create a `tmp.xcconfig` file which can be accessed by `info.plist`
 
@@ -51,28 +66,18 @@ Start by creating a new scheme:
 - Click Duplicate Scheme on the bottom
 - Give it a proper name on the top left. For instance: "Myapp (staging)"
 
+#### NOTE
+You need to make sure that your scheme name matches the `flavor` name which you defined on the flutter side of things
+eg. `flutter run ios --flavor develop`
+
 Then edit the newly created scheme to make it use a different env file. From the same "manage scheme" window:
 
-- Expand the "Build" settings on left
-- Click "Pre-actions", and under the plus sign select "New Run Script Action"
-- Where it says "Type a script or drag a script file", type:
+In the Xcode menu, go to Product > Scheme > Manage Schemes > select your scheme > Click edit
+
+- Follow steps 3 and 4 again for each scheme and replace you env files
 
 ```
-echo ".env.staging" > /tmp/envfile   # replace .env.staging for your file
+echo ".env.staging" > ${SRCROOT}/.envfile   # replace .env.staging for your file
 ```
-
-By default, flutter_config will always pickup the `.env` file as the default file unless a
-`/tmp/enfile` is detected. This means that all your iOS schemes with custom `.env` files should include:
-
-```
-echo ".env.yuorCustomEnv" > /tmp/envfile
-```
-
-As a pre-build action. The end result should look something like this:
-
-![img](./pic4.png)
-
-It may be a better Idea not modifying system-wide files like /tmp/envfile
-but instead set the file in the current directory, I have been trying to implement this but may need some help, [See #2](https://github.com/ByneappLLC/flutter_config/issues/2)
 
 This is still a bit experimental and dirty – let us know if you have a better idea on how to make iOS use different configurations opening a pull request or issue!

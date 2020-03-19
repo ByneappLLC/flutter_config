@@ -65,6 +65,8 @@
 **/ios/ServiceDefinitions.json
 **/ios/Runner/GeneratedPluginRegistrant.*
 **/ios/Flutter/flutter_export_environment.sh
+**/ios/.envfile
+**/ios/Flutter/tmp.xcconfig
 
 # Exceptions to above rules.
 !**/ios/**/default.mode1v3

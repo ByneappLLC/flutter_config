@@ -16,12 +16,12 @@ Config Variables for your Flutter Apps.
   s.public_header_files = 'Classes/**/*.h'
   s.dependency 'Flutter'
 
-  s.ios.deployment_target = '10.0'
+  # s.ios.deployment_target = '10.0'
   s.script_phase = {
     name: 'Config codegen',
     script: %(
 set -ex
-HOST_PATH="$SRCROOT/../.."
+HOST_PATH="$SRCROOT/../"
 "${PODS_TARGET_SRCROOT}/Classes/BuildDotenvConfig.rb" "$HOST_PATH" "${PODS_TARGET_SRCROOT}/Classes"
 ),
     execution_position: :before_compile,
