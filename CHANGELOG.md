@@ -1,3 +1,12 @@
+## 1.0.6
+
+* **Breaking change**. reading the envfile has been moved from /tmp/envfile 
+    to the root project directory. you need to change your pre-action scripts from
+    `echo ".env" > /tmp/envfile ` to `echo ".env" > ${SRCROOT}/.envfile`
+
+- Update documentation for iOS
+- Fix Product name
+
 ## 1.0.5
 
 - Update documentation for iOS
