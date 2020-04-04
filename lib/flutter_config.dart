@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
 
 /// Flutter config writes environment variables to `BuildConfig` class for android
@@ -36,4 +37,9 @@ class FlutterConfig {
   /// returns all the current loaded variables;
   static Map<String, dynamic> get variables =>
       _instance._variables != null ? _instance._variables : {};
+
+  @visibleForTesting
+  static loadValueForTesting(Map<String, dynamic> values) {
+    _instance._variables = values;
+  }
 }
