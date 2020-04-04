@@ -1,3 +1,7 @@
+## 1.0.7
+
+- Add method for tests
+
 ## 1.0.6
 
 * **Breaking change**. reading the envfile has been moved from /tmp/envfile 
