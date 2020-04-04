@@ -51,8 +51,6 @@ Whenever you need to use `FlutterConfig` in your tests, simply use the method `l
 ```dart
 import 'package:flutter_config/flutter_config.dart';
 
-FlutterConfig.get('FABRIC_ID') // returns 'abcdefgh'
-
 void main() {
   FlutterConfig.loadValueForTesting({'BASE_URL': 'https://www.mockurl.com'});
   
