@@ -73,7 +73,7 @@ android {
         project.env.each { k, v ->
             def escaped = v.replaceAll("%","\\\\u0025")
             buildConfigField "String", k, "\"$v\""
-            resValue "string", k, "\"$escaped\""
+            resValue "string", k, "$escaped"
         }
     }
 }
