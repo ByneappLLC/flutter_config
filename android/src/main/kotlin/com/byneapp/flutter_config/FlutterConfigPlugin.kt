@@ -1,8 +1,11 @@
 package com.byneapp.flutter_config
 
 import android.app.Activity
+import android.content.Context
 import android.content.res.Resources
+import androidx.annotation.NonNull
 import io.flutter.Log
+import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
@@ -11,7 +14,22 @@ import io.flutter.plugin.common.PluginRegistry.Registrar
 import java.lang.IllegalArgumentException
 import java.lang.reflect.Field
 
-class FlutterConfigPlugin(private val activity: Activity): MethodCallHandler {
+class FlutterConfigPlugin(private val context: Context? = null): FlutterPlugin, MethodCallHandler {
+
+  private var applicationContext: Context? = context
+
+  private lateinit var channel : MethodChannel
+
+  override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
+    applicationContext = flutterPluginBinding.applicationContext
+    channel = MethodChannel(flutterPluginBinding.binaryMessenger, "flutter_config")
+    channel.setMethodCallHandler(this)
+  }
+
+  override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
+    channel.setMethodCallHandler(null)
+    applicationContext = null
+  }
 
   companion object {
     @JvmStatic
@@ -34,13 +52,12 @@ class FlutterConfigPlugin(private val activity: Activity): MethodCallHandler {
     val variables = hashMapOf<String, Any?>()
 
     try {
-      val context = activity.applicationContext
+      val context = applicationContext!!.applicationContext
       val resId = context.resources.getIdentifier("build_config_package", "string", context.packageName)
-      var className: String
-      try {
-          className = context.getString(resId)
+      val className: String = try {
+        context.getString(resId)
       } catch (e: Resources.NotFoundException) {
-        className = activity.applicationContext.packageName
+        applicationContext!!.packageName
       }
 
       val clazz = Class.forName("$className.BuildConfig")
