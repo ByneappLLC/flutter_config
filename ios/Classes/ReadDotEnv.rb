@@ -18,7 +18,7 @@ def read_dot_env(envs_root)
     envFilePath = "#{envs_root}.envfile"
   end
   # pick a custom env file if set
-  if File.exists?(envFilePath)
+  unless envFilePath.nil?
     puts "file exists at #{envFilePath}"
     custom_env = true
     file = File.read(envFilePath).strip
