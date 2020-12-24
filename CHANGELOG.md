@@ -1,3 +1,8 @@
+## 1.0.8
+
+- Update Android Plugin
+- Fix unable to default to .env
+
 ## 1.0.7
 
 - Add method for tests
