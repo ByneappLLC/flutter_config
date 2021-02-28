@@ -10,6 +10,17 @@ add the following line:
 
 `apply from: project(':flutter_config').projectDir.getPath() + "/dotenv.gradle"`
 
+**Building a release version**
+
+When building your apk for release, the R8 code shrinker obfuscates the `BuildConfig` class which holds all the env variables and thus causes all the env variables to be null. To prevent this, the following has to be done:
+
+1. Add file `android/app/proguard-rules.pro` to your app's project.
+2. Add the below line to the newly created `proguard-rules.pro` file:
+    ```
+    -keep class com.yourcompany.app.BuildConfig { *; }
+    ```
+    where `com.yourcompany.app` should be replaced with your app's package name.
+
 ## Usage in Java/Kotlin Code
 
 Config variables set in `.env` are available to your Java or Kotlin classes via `BuildConfig`:
