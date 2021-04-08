@@ -10,8 +10,11 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_config_example/main.dart';
 
+import 'package:flutter_config/flutter_config.dart';
+
 void main() {
   testWidgets('Verify Platform version', (WidgetTester tester) async {
+    FlutterConfig.loadValueForTesting({'FABRIC_ID': 'TEST_FABRIC_12345'});
     // Build our app and trigger a frame.
     await tester.pumpWidget(MyApp());
 
@@ -19,7 +22,8 @@ void main() {
     expect(
       find.byWidgetPredicate(
         (Widget widget) =>
-            widget is Text && widget.data.startsWith('Running on:'),
+            widget is Text &&
+            widget.data!.startsWith('Values of fabric Id: TEST_FABRIC_12345'),
       ),
       findsOneWidget,
     );
