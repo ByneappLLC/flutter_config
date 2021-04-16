@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 /// and as a `NSDictionary` for iOS
 class FlutterConfig {
   /// An instance of all environment variables
-  Map<String, dynamic> _variables = {};
+  late Map<String, dynamic> _variables;
 
   // Private Constructor
   FlutterConfig._internal();
