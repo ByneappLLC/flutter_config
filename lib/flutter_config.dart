@@ -17,9 +17,9 @@ class FlutterConfig {
 
   /// Variables need to be loaded on app startup, recommend to do it `main.dart`
   static loadEnvVariables() async {
-    final Map<String, dynamic>? variables =
+    final Map<String, dynamic>? loadedVariables =
         await _channel.invokeMapMethod('loadEnvVariables');
-    _instance._variables = variables ?? {};
+    _instance._variables = loadedVariables ?? {};
   }
 
   /// Returns a specific variable value give a [key]
