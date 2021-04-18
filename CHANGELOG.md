@@ -1,5 +1,6 @@
-## 1.0.9
+## 2.0.0
 
+- **Breaking change**. Gradle 4.0+ is needed on Android. 
 - Added support for dart null sound safety
 
 ## 1.0.8
