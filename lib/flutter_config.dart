@@ -24,12 +24,22 @@ class FlutterConfig {
 
   /// Returns a specific variable value give a [key]
   static dynamic get(String key) {
-    if (_instance._variables.containsKey(key)) {
-      return _instance._variables[key];
+    var variables = _instance._variables;
+
+    if (variables.isEmpty) {
+      print(
+        'FlutterConfig Variables are Empty\n'
+        'Ensure you have a .env file and you\n'
+        'have loaded the variables',
+      );
+    } else if (variables.containsKey(key)) {
+      return variables[key];
+    } else {
+      print(
+        'FlutterConfig Value for Key($key) not found\n'
+        'Ensure you have it in .env file',
+      );
     }
-    print(
-        'FlutterConfig Variables are Empty\n Ensure you have a .env file and you\n have loaded the variables');
-    return null;
   }
 
   /// returns all the current loaded variables;
