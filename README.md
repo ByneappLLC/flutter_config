@@ -36,6 +36,20 @@ FlutterConfig.get('FABRIC_ID') // returns 'abcdefgh'
 
 Keep in mind this module doesn't obfuscate or encrypt secrets for packaging, so **do not store sensitive keys in `.env`**. It's [basically impossible to prevent users from reverse engineering mobile app secrets](https://rammic.github.io/2015/07/28/hiding-secrets-in-android-apps/), so design your app (and APIs) with that in mind.
 
+<br/>
+
+### Load Environment Varibles in Swift
+
+First import the plugin
+```Swift
+import flutter_config
+```
+Then you can use the .env Variable, replace `ENV_API_KEY` with yours.
+```Swift
+flutter_config.FlutterConfigPlugin.env(for: "ENV_API_KEY")
+```
+
+
 ## Getting Started
 
 Install the latest version of the plugin
