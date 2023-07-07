@@ -35,21 +35,17 @@ project.ext.envConfigFiles = [
 ]
 apply from: project(':flutter_config').projectDir.getPath() + "/dotenv.gradle"
 android {
-    compileSdkVersion 29
+    compileSdkVersion 33
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
-    }
-
-    lintOptions {
-        disable 'InvalidPackage'
     }
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.byneapp.flutter_config_example"
         minSdkVersion 16
-        targetSdkVersion 29
+        targetSdkVersion 33
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -76,6 +72,10 @@ android {
             dimension "flavors"
         }
     }
+    lint {
+        disable 'InvalidPackage'
+    }
+    namespace 'com.byneapp.flutter_config_example'
 }
 
 flutter {
@@ -84,7 +84,7 @@ flutter {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
