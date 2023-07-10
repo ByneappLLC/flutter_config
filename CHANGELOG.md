@@ -1,3 +1,7 @@
+## 2.0.2
+
+- Update deprecated Ruby code in iOS script.
+
 ## 2.0.1
 
 - Update to Gradle 7.3.0.
