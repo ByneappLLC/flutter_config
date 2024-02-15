@@ -25,6 +25,14 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
+    if (project.android.hasProperty("namespace")) {
+        namespace 'com.byneapp.flutter_config'
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+    
     compileSdkVersion 29
 
     sourceSets {
