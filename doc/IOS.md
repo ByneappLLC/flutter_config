@@ -40,10 +40,11 @@ Extra steps are required if you are reading env varibles from your `info.plist` 
    ![img](./pic3.png)
 
    ```
-   echo ".env" > ${SRCROOT}/.envfile
+   echo ".env" > $(dirname $WORKSPACE_PATH)/.envfile
    ```
 
    ```
+   SRCROOT=$(dirname $WORKSPACE_PATH)
    ${SRCROOT}/.symlinks/plugins/flutter_config/ios/Classes/BuildXCConfig.rb ${SRCROOT}/ ${SRCROOT}/Flutter/tmp.xcconfig
    ```
 
@@ -77,7 +78,7 @@ In the Xcode menu, go to Product > Scheme > Manage Schemes > select your scheme 
 - Follow steps 3 and 4 again for each scheme and replace you env files
 
 ```
-echo ".env.staging" > ${SRCROOT}/.envfile   # replace .env.staging for your file
+echo ".env.staging" > $(dirname $WORKSPACE_PATH)/.envfile   # replace .env.staging for your file
 ```
 
 This is still a bit experimental and dirty – let us know if you have a better idea on how to make iOS use different configurations opening a pull request or issue!
